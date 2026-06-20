@@ -208,3 +208,21 @@ fn zero_and_excessive_withdrawals_fail_without_changing_the_jar() {
     assert_eq!(svm.get_balance(&jar), Some(balance_before));
     assert_eq!(read_jar(&svm, &jar).total_tips, 0);
 }
+
+#[test]
+fn overflowing_total_tips_fails_atomically() {
+    let mut svm = new_svm();
+    let owner = Keypair::new();
+    let tipper = Keypair::new();
+    for signer in [&owner, &tipper] {
+        svm.airdrop(&signer.pubkey(), STARTING_BALANCE).unwrap();
+    }
+    let jar = initialize(&mut svm, &owner);
+    set_total_tips(&mut svm, jar, u64::MAX);
+    let jar_balance_before = svm.get_balance(&jar).unwrap();
+
+    assert!(!tip(&mut svm, &tipper, jar, 1));
+
+    assert_eq!(svm.get_balance(&jar), Some(jar_balance_before));
+    assert_eq!(read_jar(&svm, &jar).total_tips, u64::MAX);
+}
