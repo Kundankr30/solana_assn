@@ -10,7 +10,7 @@ pub struct Tip<'info> {
     #[account(
         mut,
         seeds = [b"tip_jar", jar.owner.as_ref()],
-        //any one can tip
+        //any one can tip to jar
         bump = jar.bump,
     )]
     pub jar: Account<'info, TipJar>,

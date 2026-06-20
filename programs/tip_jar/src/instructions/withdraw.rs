@@ -10,6 +10,7 @@ pub struct Withdraw<'info> {
         seeds = [b"tip_jar",owner.key().as_ref()],
         bump = jar.bump,
         has_one = owner@ ErrorCode::NotOwner,
+        //only owner can withdraw
     )]
     pub jar: Account<'info, TipJar>,
 }
