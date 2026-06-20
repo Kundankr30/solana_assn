@@ -9,7 +9,7 @@ use instructions::initialize::*;
 use instructions::tip::*;
 use instructions::withdraw::*;
 
-declare_id!("CG5AUTADEm4a7DSbMA7pR4acgASqfxXRmSpDkoGd7UC");
+declare_id!("FSrnXoxwum2k6FnvSPfabjaK883ziQ9sW8FcpepJpKEc");
 
 #[program]
 pub mod tip_jar {

@@ -15,7 +15,6 @@ pub struct Initialize<'info> {
     pub jar: Account<'info, TipJar>,
     pub system_program: Program<'info, System>,
 }
-
 pub fn handler(ctx: Context<Initialize>) -> Result<()> {
     let jar = &mut ctx.accounts.jar;
     jar.owner = ctx.accounts.owner.key();
