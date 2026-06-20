@@ -9,7 +9,7 @@ pub struct Initialize<'info> {
         init,
         payer = owner,
         space = TipJar::LEN,
-        seeds = [b"seeds_plz",owner.key().as_ref()],
+        seeds = [b"tip_jar",owner.key().as_ref()],
         bump,
     )]
     pub jar: Account<'info, TipJar>,
@@ -20,7 +20,7 @@ pub fn handler(ctx: Context<Initialize>) -> Result<()> {
     let jar = &mut ctx.accounts.jar;
     jar.owner = ctx.accounts.owner.key();
     jar.total_tips = 0;
-    jar.bump = ctx.bump.jar;
+    jar.bump = ctx.bumps.jar;
     msg!("TipJar initalized for owner:{}", jar.owner);
     Ok(())
 }
