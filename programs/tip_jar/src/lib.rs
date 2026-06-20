@@ -1,21 +1,27 @@
+use anchor_lang::prelude::*;
+
 pub mod constants;
 pub mod error;
 pub mod instructions;
 pub mod state;
 
-use anchor_lang::prelude::*;
+use instructions::initialize::*;
+use instructions::tip::*;
+use instructions::withdraw::*;
 
-pub use constants::*;
-pub use instructions::*;
-pub use state::*;
-
-declare_id!("7n7uxngyUJtQVFvhCVatkHcMV2GfbvN2D1nk7EFcBKMV");
+declare_id!("CG5AUTADEm4a7DSbMA7pR4acgASqfxXRmSpDkoGd7UC");
 
 #[program]
 pub mod tip_jar {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        initialize::handler(ctx)
+        instructions::initialize::handler(ctx)
+    }
+    pub fn tip(ctx: Context<Tip>, tip_amount: u64) -> Result<()> {
+        instructions::tip::handler(ctx, tip_amount)
+    }
+    pub fn withdraw(ctx: Context<Withdraw>, withdraw_amount: u64) -> Result<()> {
+        instructions::withdraw::handler(ctx, withdraw_amount)
     }
 }
