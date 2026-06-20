@@ -1,6 +1,6 @@
 use crate::error::ErrorCode;
 use crate::state::TipJar;
-use anchor_lang::prelude::*; // this gives you everything you need
+use anchor_lang::prelude::*;
 #[derive(Accounts)]
 pub struct Withdraw<'info> {
     #[account(mut)]

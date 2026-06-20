@@ -14,7 +14,6 @@ declare_id!("FSrnXoxwum2k6FnvSPfabjaK883ziQ9sW8FcpepJpKEc");
 #[program]
 pub mod tip_jar {
     use super::*;
-
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
         instructions::initialize::handler(ctx)
     }
